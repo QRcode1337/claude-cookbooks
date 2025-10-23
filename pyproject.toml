@@ -40,3 +40,6 @@ ignore = ["E501", "S101"]  # E501: line too long, S101: assert used (ok in tests
 # Notebooks have different conventions than regular Python files
 "*.ipynb" = ["E402", "E501", "F401", "F811"]  # Allow: imports mid-file, long lines, unused imports, redefinitions
 
+[tool.pytest.ini_options]
+pythonpath = ["tool_use"]  # Add tool_use directory to Python path for tests
+
