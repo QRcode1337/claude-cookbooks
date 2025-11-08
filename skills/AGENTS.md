@@ -76,7 +76,7 @@ skills/
 
 ## Development Gotchas
 
-### 1. SDK Version
+ANTHROPIC_API_KEY=your-api-key-here
 **Important**: Ensure you have the Anthropic SDK version 0.71.0 or later with Skills support
 ```bash
 pip install anthropic>=0.71.0

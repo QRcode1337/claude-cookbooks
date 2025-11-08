@@ -1,0 +1,93 @@
+# Claude Code Configuration
+# Shared settings for slash commands and workflows
+
+# Common tool permissions for PR review commands
+common-tools:
+  pr-review:
+    - "Bash(gh pr comment:*)"
+    - "Bash(gh pr diff:*)"
+    - "Bash(gh pr view:*)"
+    - "Read"
+    - "Grep"
+
+  pr-review-parallel:
+    - "Bash(gh pr comment:*)"
+    - "Bash(gh pr diff:*)"
+    - "Bash(gh pr view:*)"
+    - "Read"
+    - "Grep"
+    execution: parallel
+    batch-commands: true
+
+# Cache configuration
+cache:
+  enabled: true
+  directory: ".claude/cache"
+  ttl:
+    model-docs: 86400      # 24 hours
+    pr-analysis: 604800    # 7 days
+    link-validation: 3600  # 1 hour
+
+  invalidation:
+    on-force-push: true
+    on-file-change: true
+    max-age-days: 30
+
+# Performance settings
+performance:
+  parallel-execution: true
+  max-concurrent-commands: 5
+  incremental-analysis: true
+  diff-only-mode: true
+
+# Security patterns for secret detection
+security:
+  secret-patterns:
+    anthropic-api-key: 'sk-ant-[a-zA-Z0-9-_]{95}'
+    github-token: 'ghp_[a-zA-Z0-9]{36}'
+    github-fine-grained: 'github_pat_[a-zA-Z0-9_]{82}'
+    aws-access-key: 'AKIA[0-9A-Z]{16}'
+    openai-key: 'sk-[a-zA-Z0-9]{48}'
+    generic-private-key: '-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----'
+
+  exclude-patterns:
+    - "# Example: sk-ant-"
+    - "# NOT: sk-ant-"
+    - "# Don't use: sk-ant-"
+    - "placeholder"
+    - "your-api-key-here"
+
+# Output formats
+output:
+  default-format: markdown
+  json-schema-enabled: true
+  structured-reporting: true
+
+# MCP server preferences for commands
+mcp-servers:
+  context7:
+    enabled: true
+    use-for: ["documentation", "model-info", "api-reference"]
+
+  sequential:
+    enabled: true
+    use-for: ["complex-analysis", "multi-step-reasoning"]
+
+# Progressive disclosure levels
+analysis-levels:
+  fast:
+    description: "Security scan only"
+    target-time-ms: 100
+    checks: ["security"]
+
+  standard:
+    description: "Security + code quality"
+    target-time-ms: 300
+    checks: ["security", "code-quality"]
+
+  thorough:
+    description: "Full comprehensive analysis"
+    target-time-ms: 600
+    checks: ["security", "code-quality", "structure", "best-practices"]
+
+  default: standard

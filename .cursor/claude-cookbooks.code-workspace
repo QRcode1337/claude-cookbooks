@@ -2,12 +2,6 @@
 	"folders": [
 		{
 			"path": ".."
-		},
-		{
-			"path": "../../../../Downloads/claude-code-action-1.0.14"
 		}
-	],
-	"settings": {
-		"claude-code.useTerminal": true
-	}
+	]
 }

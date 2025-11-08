@@ -1,3 +1,14 @@
 {
-  "agentCanUpdateSnapshot": true
+  "install": "npm install",
+  "start": "npm run dev",
+  "terminals": [
+    {
+      "name": "bash",
+      "command": "- s"
+    }
+  ],
+  "build": {
+    "context": ".",
+    "dockerfile": "Dockerfile"
+  }
 }

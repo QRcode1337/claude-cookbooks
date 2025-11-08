@@ -1,0 +1,9 @@
+# Ignore all cache files
+*
+!.gitignore
+!README.md
+
+# Cache directories should be regenerated
+model-docs/
+pr-analysis/
+link-validation/
